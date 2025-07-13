@@ -13,7 +13,7 @@ module.exports = {
 	'output': {
 		'filename': '[name].[chunkhash].js',
 		'path': resolve(__dirname, 'docs'),
-		'publicPath': '/',
+		'publicPath': isProduction ? '/archeage-parser/' : '/',
 	},
 	'performance': {
 		'hints': false,
