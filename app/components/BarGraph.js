@@ -6,7 +6,7 @@ import { AxisBottom, AxisLeft } from '@visx/axis';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { useTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
 import { localPoint } from '@visx/event';
-import colors from '../../lib/utils/colors';
+import getColor from '../../lib/utils/colors';
 
 const color = '#000';
 const background = '#fff';
@@ -51,7 +51,7 @@ export default function BarGraph ({ data, type }) {
 	}), [data]);
 	const colorScale = useMemo(() => scaleOrdinal({
 		'domain': keys,
-		'range': [colors[type]],
+		'range': [getColor(type)],
 	}), [data]);
 	
 	const {

@@ -1,11 +1,10 @@
 import { create } from 'zustand';
 import {
-	//Damage,
-	Health,
+	Damage,
 } from '../../data/types';
 
 const useOptions = create((set) => ({
-	'displayType': Health,
+	'displayType': Damage,
 	'setDisplayType': (displayType) => set(() => ({
 		displayType,
 	})),
