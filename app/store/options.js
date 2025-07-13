@@ -1,10 +1,12 @@
 import { create } from 'zustand';
-import {
-	Damage,
-} from '../../data/types';
+import { types } from '../../lib/utils/types';
+
+const {
+	Overview,
+} = types;
 
 const useOptions = create((set) => ({
-	'displayType': Damage,
+	'displayType': Overview,
 	'setDisplayType': (displayType) => set(() => ({
 		displayType,
 	})),

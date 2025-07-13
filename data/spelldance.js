@@ -1,7 +1,9 @@
+const { types } = require('../lib/utils/types');
+
 const {
 	Damage,
 	Health,
-} = require('./types');
+} = types;
 
 module.exports = {
 	[`Dancer's Touch`]: Damage,

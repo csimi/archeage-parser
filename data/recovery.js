@@ -1,6 +1,8 @@
+const { types } = require('../lib/utils/types');
+
 const {
 	Recovery,
-} = require('./types');
+} = types;
 
 module.exports = {
 	'Healing Potion': Recovery,

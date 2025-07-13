@@ -1,8 +1,21 @@
 import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import BarGraph from './BarGraph';
 import useOptions from '../store/options';
 import useStatistics from '../store/statistics';
+import { types } from '../../lib/utils/types';
+
+const {
+	Overview,
+	Damage,
+	Health,
+	Taken,
+	Received,
+	Recovery,
+} = types;
 
 export default function Statistics () {
 	const displayType = useOptions((state) => state.displayType);
@@ -19,7 +32,24 @@ export default function Statistics () {
 		);
 	}
 	
+	if (displayType === Overview) {
+		return (
+			<Container fluid className="d-flex flex-column flex-grow-1">
+				<Row className="flex-row flex-grow-1">
+					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Damage].slice(0, 20)} type={Damage} /></Col>
+					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Health].slice(0, 20)} type={Health} /></Col>
+					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Taken].slice(0, 20)} type={Taken} /></Col>
+				</Row>
+				<Row className="flex-row flex-grow-1">
+					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Received].slice(0, 20)} type={Received} /></Col>
+					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Recovery].slice(0, 20)} type={Recovery} /></Col>
+					<Col className="d-flex flex-column flex-grow-1">&nbsp;</Col>
+				</Row>
+			</Container>
+		);
+	}
+	
 	return (
-		<BarGraph width="800" height="600" data={data[displayType].slice(0, 20)} type={displayType} />
+		<BarGraph data={data[displayType].slice(0, 50)} type={displayType} />
 	);
 }

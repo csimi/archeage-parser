@@ -1,6 +1,8 @@
+const { types } = require('../lib/utils/types');
+
 const {
 	Damage,
-} = require('./types');
+} = types;
 
 module.exports = {
 	'Endless Arrows': Damage,

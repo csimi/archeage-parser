@@ -1,8 +1,10 @@
+const { types } = require('../lib/utils/types');
+
 const {
 	Damage,
 	Health,
 	Skill,
-} = require('./types');
+} = types;
 
 module.exports = {
 	'Antithesis': Damage,

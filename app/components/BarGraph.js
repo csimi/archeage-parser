@@ -5,15 +5,15 @@ import { Group } from '@visx/group';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { useTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
-import { localPoint } from '@visx/event';
-import getColor from '../../lib/utils/colors';
+import { getTypeName } from '../../lib/utils/types';
+import { getColor } from '../../lib/utils/colors';
 
 const color = '#000';
 const background = '#fff';
 
 const defaultMargin = {
 	'top': 40,
-	'left': 200,
+	'left': 150,
 	'right': 40,
 	'bottom': 40,
 };
@@ -26,8 +26,6 @@ const tooltipStyles = {
 
 const dataKey = 'name';
 const getName = (playerData) => playerData[dataKey];
-
-let tooltipTimeout;
 
 export default function BarGraph ({ data, type }) {
 	const keys = Object.keys(data.at(0)).filter((key) => key !== dataKey);
@@ -95,17 +93,13 @@ export default function BarGraph ({ data, type }) {
 									height={bar.height}
 									fill={bar.color}
 									onMouseLeave={() => {
-										tooltipTimeout = window.setTimeout(() => {
-											hideTooltip();
-										}, 300);
+										hideTooltip();
 									}}
 									onMouseMove={(event) => {
-										clearTimeout(tooltipTimeout);
-										const point = localPoint(event);
 										showTooltip({
 											'tooltipData': bar,
-											'tooltipTop': point?.y ?? 0,
-											'tooltipLeft': point?.x ?? 0,
+											'tooltipTop': event?.nativeEvent?.pageY ?? 0,
+											'tooltipLeft': event?.nativeEvent?.pageX ?? 0,
 										});
 									}}
 								/>
@@ -126,6 +120,7 @@ export default function BarGraph ({ data, type }) {
 						}}
 					/>
 					<AxisBottom
+						numTicks={5}
 						top={yMax}
 						scale={xScale}
 						stroke={color}
@@ -141,7 +136,7 @@ export default function BarGraph ({ data, type }) {
 			{tooltipOpen && tooltipData && (
 				<Tooltip top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
 					<div style={{ 'color': colorScale(tooltipData.key) }}>
-						<strong>{tooltipData.key}</strong>
+						<strong>{getTypeName(tooltipData.key)}</strong>
 					</div>
 					<div>{tooltipData.bar.data[tooltipData.key]}</div>
 					<div>

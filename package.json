@@ -21,7 +21,6 @@
     "@babel/preset-react": "^7.27.1",
     "@csimi/eslint-config": "^4.0.1",
     "@visx/axis": "^3.12.0",
-    "@visx/event": "^3.12.0",
     "@visx/group": "^3.12.0",
     "@visx/responsive": "^3.12.0",
     "@visx/scale": "^3.12.0",

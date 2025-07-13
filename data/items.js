@@ -1,6 +1,8 @@
+const { types } = require('../lib/utils/types');
+
 const {
 	Health,
-} = require('./types');
+} = types;
 
 module.exports = {
 	'Healing Talisman': Health,
