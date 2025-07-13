@@ -1,6 +1,6 @@
 # About
 
-This is a parser and visualizer for Archeage combat log files.
+This is a parser and visualizer for ArcheAge combat log files.
 
 # Usage
 
