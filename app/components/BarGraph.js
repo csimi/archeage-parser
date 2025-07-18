@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useParentSize } from '@visx/responsive';
+import { Text } from '@visx/text';
 import { BarStackHorizontal } from '@visx/shape';
 import { Group } from '@visx/group';
 import { AxisBottom, AxisLeft } from '@visx/axis';
@@ -27,7 +28,7 @@ const tooltipStyles = {
 const dataKey = 'name';
 const getName = (playerData) => playerData[dataKey];
 
-export default function BarGraph ({ data, type }) {
+export default function BarGraph ({ data, type, title }) {
 	const keys = Object.keys(data.at(0) ?? {}).filter((key) => key !== dataKey);
 	
 	const sumValues = useMemo(() => data.reduce((accumulator, playerData) => {
@@ -73,6 +74,7 @@ export default function BarGraph ({ data, type }) {
 		<div ref={parentRef} className="d-flex flex-column flex-grow-1 p-0 mt-3 mb-3">
 			<svg width={width} height={height}>
 				<rect width={width} height={height} fill={background} rx={14} />
+				<Text verticalAnchor="start">{title}</Text>
 				<Group top={margin.top} left={margin.left}>
 					<BarStackHorizontal
 						data={data}

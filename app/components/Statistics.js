@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import BarGraph from './BarGraph';
 import useOptions from '../store/options';
 import useStatistics from '../store/statistics';
-import { types } from '../../lib/utils/types';
+import { types, getTypeName } from '../../lib/utils/types';
 
 const {
 	Overview,
@@ -36,13 +36,13 @@ export default function Statistics () {
 		return (
 			<Container fluid className="d-flex flex-column flex-grow-1">
 				<Row className="flex-row flex-grow-1">
-					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Damage].slice(0, 20)} type={Damage} /></Col>
-					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Health].slice(0, 20)} type={Health} /></Col>
-					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Taken].slice(0, 20)} type={Taken} /></Col>
+					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Damage].slice(0, 20)} type={Damage} title={getTypeName(Damage)} /></Col>
+					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Health].slice(0, 20)} type={Health} title={getTypeName(Health)} /></Col>
+					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Taken].slice(0, 20)} type={Taken} title={getTypeName(Taken)} /></Col>
 				</Row>
 				<Row className="flex-row flex-grow-1">
-					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Received].slice(0, 20)} type={Received} /></Col>
-					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Recovery].slice(0, 20)} type={Recovery} /></Col>
+					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Received].slice(0, 20)} type={Received} title={getTypeName(Received)} /></Col>
+					<Col className="d-flex flex-column flex-grow-1"><BarGraph data={data[Recovery].slice(0, 20)} type={Recovery} title={getTypeName(Recovery)} /></Col>
 					<Col className="d-flex flex-column flex-grow-1">&nbsp;</Col>
 				</Row>
 			</Container>
@@ -50,6 +50,6 @@ export default function Statistics () {
 	}
 	
 	return (
-		<BarGraph data={data[displayType].slice(0, 50)} type={displayType} />
+		<BarGraph data={data[displayType].slice(0, 50)} type={displayType} title={getTypeName(displayType)} />
 	);
 }
