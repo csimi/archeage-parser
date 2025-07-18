@@ -11,7 +11,7 @@ const onRuntimeError = (err) => {
 process.on('uncaughtException', onRuntimeError);
 process.on('unhandledRejection', onRuntimeError);
 
-const reader = new FileReader(join(__dirname, 'logs', 'BD20250710.log'));
+const reader = new FileReader(join(__dirname, 'Combat.log'));
 const parser = new LogParser(reader.getStream());
 
 Promise.resolve().then(async () => {

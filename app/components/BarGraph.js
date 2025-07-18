@@ -28,7 +28,7 @@ const dataKey = 'name';
 const getName = (playerData) => playerData[dataKey];
 
 export default function BarGraph ({ data, type }) {
-	const keys = Object.keys(data.at(0)).filter((key) => key !== dataKey);
+	const keys = Object.keys(data.at(0) ?? {}).filter((key) => key !== dataKey);
 	
 	const sumValues = useMemo(() => data.reduce((accumulator, playerData) => {
 		const sumValue = keys.reduce((playerValue, propertyName) => {
