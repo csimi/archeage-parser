@@ -10,6 +10,10 @@ const useOptions = create((set) => ({
 	'setDisplayType': (displayType) => set(() => ({
 		displayType,
 	})),
+	'focusName': '',
+	'setFocusName': ({ target }) => set(() => ({
+		'focusName': target.value,
+	})),
 }));
 
 export default useOptions;

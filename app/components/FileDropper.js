@@ -46,11 +46,10 @@ export default function FileDropper () {
 		
 		try {
 			clearStatistics(isProcessing, {});
-			await new Promise((resolve) => setTimeout(resolve, 1));
+			await new Promise((resolve) => setTimeout(resolve, 42));
 			const parser = new LogParser(readable);
 			await parser.parseData();
-			const data = parser.getData();
-			setStatistics(data);
+			setStatistics(parser);
 		}
 		catch (err) {
 			clearStatistics(!isProcessing);
