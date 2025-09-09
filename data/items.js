@@ -7,4 +7,5 @@ const {
 module.exports = {
 	'Healing Talisman': Health,
 	[`Black Dragon's Serenity`]: Health,
+	'Golden Dawn': Health,
 };

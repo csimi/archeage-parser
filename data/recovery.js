@@ -24,5 +24,5 @@ module.exports = {
 	'Orange Goblet of Honor': Recovery,
 	'Conversion Shield': Recovery,
 	'Flame Conversion Shield': Recovery,
-	'Golden Dawn': Recovery,
+	'Healing Grimoire': Recovery,
 };

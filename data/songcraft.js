@@ -7,5 +7,5 @@ const {
 
 module.exports = {
 	'Healing Hymn': Skill,
-	'[Perform] Ode to Recovery': Health,
+	'Ode to Recovery': Health,
 };
