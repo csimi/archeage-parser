@@ -13,6 +13,10 @@ const {
 	Taken,
 	Received,
 	Recovery,
+	Loved,
+	Hated,
+	Loves,
+	Hates,
 } = types;
 
 const typesList = [
@@ -22,6 +26,10 @@ const typesList = [
 	Taken,
 	Received,
 	Recovery,
+	Loved,
+	Hated,
+	Loves,
+	Hates,
 ];
 
 export default function NavComponent () {

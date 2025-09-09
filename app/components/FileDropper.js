@@ -1,6 +1,7 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
 import useStatistics from '../store/statistics';
 import LogParser from '../../lib/LogParser';
 
@@ -35,6 +36,7 @@ const rejectStyle = {
 const isProcessing = true;
 
 export default function FileDropper () {
+	const [useIgnore, setIgnore] = useState(true);
 	const { setStatistics, clearStatistics } = useStatistics();
 	const onDrop = useCallback(async (acceptedFiles) => {
 		if (acceptedFiles.length !== 1) {
@@ -48,7 +50,9 @@ export default function FileDropper () {
 			clearStatistics(isProcessing, {});
 			await new Promise((resolve) => setTimeout(resolve, 42));
 			const parser = new LogParser(readable);
-			await parser.parseData();
+			await parser.parseData({
+				useIgnore,
+			});
 			setStatistics(parser);
 		}
 		catch (err) {
@@ -56,7 +60,7 @@ export default function FileDropper () {
 			console.debug('Processing error');
 			console.trace(err);
 		}
-	}, []);
+	}, [useIgnore]);
 	
 	const {
 		getRootProps,
@@ -79,6 +83,7 @@ export default function FileDropper () {
 	
 	return (
 		<Container className="d-flex flex-column flex-grow-1 justify-content-center pt-5 pb-5">
+			<div><Form.Check type="checkbox" label="Ignore PVE" checked={useIgnore} onChange={() => setIgnore(!useIgnore)} /></div>
 			<div {...getRootProps({ style })}>
 				<input {...getInputProps()} />
 				<p>Drag &apos;n&apos; drop a combat log here, or click to select the file</p>
