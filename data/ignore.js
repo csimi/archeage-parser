@@ -4,4 +4,7 @@ module.exports = [
 	'Anthalon',
 	'Bloodspire',
 	'Kraken',
+	'Jakar',
+	'Ghost-eater',
+	'Фуксория', // kirin
 ];

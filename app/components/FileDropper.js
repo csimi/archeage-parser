@@ -37,6 +37,8 @@ const isProcessing = true;
 
 export default function FileDropper () {
 	const [useIgnore, setIgnore] = useState(true);
+	const [noZoo, setNoZoo] = useState(true);
+	
 	const { setStatistics, clearStatistics } = useStatistics();
 	const onDrop = useCallback(async (acceptedFiles) => {
 		if (acceptedFiles.length !== 1) {
@@ -52,6 +54,7 @@ export default function FileDropper () {
 			const parser = new LogParser(readable);
 			await parser.parseData({
 				useIgnore,
+				noZoo,
 			});
 			setStatistics(parser);
 		}
@@ -60,7 +63,7 @@ export default function FileDropper () {
 			console.debug('Processing error');
 			console.trace(err);
 		}
-	}, [useIgnore]);
+	}, [useIgnore, noZoo]);
 	
 	const {
 		getRootProps,
@@ -83,7 +86,10 @@ export default function FileDropper () {
 	
 	return (
 		<Container className="d-flex flex-column flex-grow-1 justify-content-center pt-5 pb-5">
-			<div><Form.Check type="checkbox" label="Ignore PVE" checked={useIgnore} onChange={() => setIgnore(!useIgnore)} /></div>
+			<div>
+				<Form.Check type="checkbox" label="Ignore PVE" checked={useIgnore} onChange={() => setIgnore(!useIgnore)} />
+				<Form.Check type="checkbox" label="No Zoo" checked={noZoo} onChange={() => setNoZoo(!noZoo)} />
+			</div>
 			<div {...getRootProps({ style })}>
 				<input {...getInputProps()} />
 				<p>Drag &apos;n&apos; drop a combat log here, or click to select the file</p>
